@@ -19,7 +19,7 @@ public class Receipt {
     /**
      * Creates a new receipt and saves all information it needs.
      *
-     * @param sale      The <code>Sale</code> for wich the receipt shall be created.
+     * @param sale      The <code>Sale</code> for which the receipt shall be created.
      */
     Receipt(Sale sale) {
 	totalCost = sale.getCurrentTotal();

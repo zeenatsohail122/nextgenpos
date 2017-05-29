@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package se.kth.ict.iv1350.nextgenpos.controller;
 
 import se.kth.ict.iv1350.nextgenpos.model.Sale;
 import se.kth.ict.iv1350.nextgenpos.model.Receipt;
-import se.kth.ict.iv1350.nextgenpos.model.ProductCatalog;
 import se.kth.ict.iv1350.nextgenpos.model.ProductSpecification;
 import se.kth.ict.iv1350.nextgenpos.model.ProductNotFoundException;
-
+import se.kth.ict.iv1350.nextgenpos.model.SaleObserver;
+import se.kth.ict.iv1350.nextgenpos.model.ProductCatalog;
 /**
  * The controller of the application. This is the sole controller, all calls to the
  * model pass through here.
@@ -23,7 +19,15 @@ public class Controller {
      * Instantiates a new <code>Controller</code>.
      */
     public Controller() {
-	catalog = new ProductCatalog();
+	catalog = ProductCatalog.getInstance();
+    }
+    
+    public void addSaleObserver(SaleObserver observer){
+        this.sale.addObserver(observer);
+    }
+    
+    public void removeSaleObserver(SaleObserver observer) {
+        this.sale.removeObserver(observer);
     }
     
     /**

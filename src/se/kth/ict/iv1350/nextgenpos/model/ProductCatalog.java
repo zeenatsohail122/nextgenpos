@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package se.kth.ict.iv1350.nextgenpos.model;
 
 import java.util.Map;
@@ -12,6 +8,7 @@ import java.util.HashMap;
  * This class is responsible for all access to the product database.
  */ 
 public class ProductCatalog { 
+    private static ProductCatalog instance = new ProductCatalog();
     private Map<Integer, ProductSpecification> products = 
 	new HashMap<Integer, ProductSpecification>();
 
@@ -26,6 +23,15 @@ public class ProductCatalog {
 	products.put(3, new ProductSpecification(3, "bread", 
 	   "a very long description, a very long description, a very long description", 10));
     }
+    
+    /**
+     * Returns a singleton instance of <code>ProductCatalog</code>
+     * @return singleton instance of <code>ProductCatalog</code>
+     */
+    public static ProductCatalog getInstance() {
+        return ProductCatalog.instance;
+    }
+
 
     /**
      * Search for an item in the product catalog.

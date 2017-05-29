@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package se.kth.ict.iv1350.nextgenpos.view;
+import java.util.List;
 import se.kth.ict.iv1350.nextgenpos.controller.Controller;
 import se.kth.ict.iv1350.nextgenpos.model.ProductNotFoundException;
 import se.kth.ict.iv1350.nextgenpos.model.ProductSpecification;
 import se.kth.ict.iv1350.nextgenpos.model.SalesLineItem;
+import se.kth.ict.iv1350.nextgenpos.model.SaleObserver;
 
 /**
  * A placeholder for the view.
@@ -28,27 +30,39 @@ public class View implements SaleObserver {
      */
     public void test() {
 	cont.makeNewSale();
-	enterItem(1);
-	enterItem(3);
-        enterItem(8);
+        cont.addSaleObserver(this);
+        enterItem(1);
+        enterItem(2);
+        enterItem(3);
+	enterItem(10);
+    }
+
+    @Override
+    public void itemAdded(SalesLineItem lineItem) {
     }
     
-    public void UpdatedSaleList(SalesLineItem allItems){
-        this.printList(allItem);
+    @Override
+    public void saleListUpdated(SalesLineItem[] allItems) {
+        this.printList(allItems);
     }
     
-    private void NotifyError(Exception err) {
-        System.out.println("---TRY AGAIN---");
-        System.out.println(err.getMessage());
+    private void printList(SalesLineItem[] lineItems) {
+        System.out.println("## Sale updated! Current items in Sale are:\n");
+        for (SalesLineItem lineItem : lineItems) {
+            System.out.println("* " + lineItem + "\n");
+        }
+    }
+    
+    private void notifyError(Exception err) {
+        System.out.println("Oops, try again! " + err.getMessage());
     }
 
     private void enterItem(int itemId) {
 	int quantity = 1;
         try {
-            ProductSpecification SpecifiedItem = cont.enterItem(itemId, quantity);
+            ProductSpecification itemSpec = cont.enterItem(itemId, quantity);
         } catch (ProductNotFoundException productException) {
-            this.NotifyError(productException);
+            this.notifyError(productException);
         }   
+    }
 }
-}
-
