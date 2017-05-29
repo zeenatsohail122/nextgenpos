@@ -7,11 +7,12 @@ package se.kth.ict.iv1350.nextgenpos.view;
 import se.kth.ict.iv1350.nextgenpos.controller.Controller;
 import se.kth.ict.iv1350.nextgenpos.model.ProductNotFoundException;
 import se.kth.ict.iv1350.nextgenpos.model.ProductSpecification;
+import se.kth.ict.iv1350.nextgenpos.model.SalesLineItem;
 
 /**
  * A placeholder for the view.
  */
-public class View {
+public class View implements SaleObserver {
     private Controller cont;
 
     /**
@@ -30,6 +31,10 @@ public class View {
 	enterItem(1);
 	enterItem(3);
         enterItem(8);
+    }
+    
+    public void UpdatedSaleList(SalesLineItem allItems){
+        this.printList(allItem);
     }
     
     private void NotifyError(Exception err) {

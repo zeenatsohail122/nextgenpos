@@ -5,7 +5,6 @@
  */
 package se.kth.ict.iv1350.nextgenpos.model;
 
-
 /**
  * An instance of this class holds information about a single sale of a single product.
  */
@@ -35,4 +34,3 @@ class SalesLineItem {
     }
     
 }
-
