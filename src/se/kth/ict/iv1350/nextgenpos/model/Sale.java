@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package se.kth.ict.iv1350.nextgenpos.model;
 
 import java.util.List;
@@ -47,9 +43,7 @@ public class Sale {
     
     private void notifyObserversAddedItem(SalesLineItem addedLineItem) {
         // Create a copy of the lineItems list and pass to observers
-        SalesLineItem[] saleItemsList = lineItems.toArray(
-            new SalesLineItem[this.lineItems.size()]
-        );
+        SalesLineItem[] saleItemsList = lineItems.toArray(new SalesLineItem[this.lineItems.size()]);
         
         for (SaleObserver observer : this.observers) {
             observer.itemAdded(addedLineItem);
