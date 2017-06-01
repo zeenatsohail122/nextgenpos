@@ -1,0 +1,8 @@
+
+1    [main] DEBUG se.kth.ict.iv1350.nextgenpos.view.View  - An exception thrown
+se.kth.ict.iv1350.nextgenpos.model.ProductNotFoundException: Product with id 12 is not found!!!
+	at se.kth.ict.iv1350.nextgenpos.model.ProductCatalog.findSpecification(ProductCatalog.java:47)
+	at se.kth.ict.iv1350.nextgenpos.controller.Controller.enterItem(Controller.java:58)
+	at se.kth.ict.iv1350.nextgenpos.view.View.enterItem(View.java:68)
+	at se.kth.ict.iv1350.nextgenpos.view.View.test(View.java:33)
+	at se.kth.ict.iv1350.nextgenpos.startup.Main.main(Main.java:15)

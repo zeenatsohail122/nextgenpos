@@ -27,6 +27,7 @@ public class View implements SaleObserver {
      */
     public void test() {
 	cont.makeNewSale();
+        cont.addSaleObserver(this);
         enterItem(1);
         enterItem(2);
 	enterItem(12);
