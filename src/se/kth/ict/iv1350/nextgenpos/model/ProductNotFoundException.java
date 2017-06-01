@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package se.kth.ict.iv1350.nextgenpos.model;
+
 public class ProductNotFoundException extends Exception {
 
     public ProductNotFoundException(int itemId) {

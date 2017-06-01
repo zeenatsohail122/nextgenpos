@@ -1,22 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package se.kth.ict.iv1350.nextgenpos.view;
 import se.kth.ict.iv1350.nextgenpos.controller.Controller;
 import se.kth.ict.iv1350.nextgenpos.model.ProductNotFoundException;
 import se.kth.ict.iv1350.nextgenpos.model.ProductSpecification;
 import se.kth.ict.iv1350.nextgenpos.model.SalesLineItem;
 import se.kth.ict.iv1350.nextgenpos.model.SaleObserver;
-
+import org.apache.log4j.Logger;
 
 /**
  * A placeholder for the view.
  */
 public class View implements SaleObserver {
     private Controller cont;
-
+    static Logger logger = Logger.getLogger(View.class);
+   
     /**
      * Creates a new <code>View</code>.
      * @param cont           The controller of the application.
@@ -24,20 +21,15 @@ public class View implements SaleObserver {
     public View(Controller cont) {
 	this.cont = cont;
     }
-
+    
     /**
      * Simulates a view. Makes some calls to the controller.
      */
     public void test() {
 	cont.makeNewSale();
-        cont.addSaleObserver(this);
         enterItem(1);
         enterItem(2);
 	enterItem(12);
-    }
-
-    @Override
-    public void itemAdded(SalesLineItem lineItem) {
     }
     
     /**
@@ -51,6 +43,11 @@ public class View implements SaleObserver {
         }
     }
     
+    //not used in this file
+    @Override
+    public void itemAdded(SalesLineItem lineItem) {
+    }
+    
     @Override
     public void saleListUpdated(SalesLineItem[] allItems) {
         this.printList(allItems);
@@ -61,15 +58,17 @@ public class View implements SaleObserver {
      * @param error       used to represent the error
      */
     private void notifyError(Exception error) {
-        System.out.println("!!!Try again!!! " + error.getMessage());
+        System.out.println("!!!Try again!!! " + error.getMessage()); 
     }
-
+    
     private void enterItem(int itemId) {
 	int quantity = 1;
         try {
             ProductSpecification itemSpecification = cont.enterItem(itemId, quantity);
-        } catch (ProductNotFoundException productException) {
-            this.notifyError(productException);
+        } catch (ProductNotFoundException e) {
+           this.notifyError(e);
+           logger.debug("An exception thrown", e);
         } 
     }
+   
 }
